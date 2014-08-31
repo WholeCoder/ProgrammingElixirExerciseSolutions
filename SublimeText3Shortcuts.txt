@@ -1,0 +1,148 @@
+ctrl-k, ctrl-b    hide side panel
+
+drag a file from file explorer into a window to open the file
+
+view->side bar-> hide/show open files --- opens a list of opened files in sidebar
+
+ctrl-shift-p          control palette
+
+Project -> Save project as             save your open 		
+									   windows and history
+
+Project -> Add folder to Project       add more folders to 	
+									   this project - be sure to save project.
+
+
+ctrl - alt - p 			list projects to open immediately
+					- also lists workspaces to open
+
+go to Project | New Workspace for Project
+	- projects let you save the layout of opened windows
+	- sublime text 3 has more than 1 workspace - unlike st2
+
+got o Project | Save Workspace As
+	- can quickly switch between open sets of files
+
+ctrl - p           open a file in project	
+
+cntrl - shift - t           re-open a closed file
+
+alt-0   through alt-1         jump between tabs
+
+ctrl-pageup   ctrl-pagedown        switch between open tabs
+
+view -> groups -> new group         like laytouts but more 
+									flexible
+ctrl-d   incrementally highlight current word
+
+
+
+
+Ctrl+Shift+V          paste and preserve indent
+
+ctrl-k, ctrl-v         paste from history
+	Instead of copying individual code blocks, then jumping back to
+	the file you’re building, you can just cruise around, filling up your clipboard history like a shopping
+	cart, then return to your file and paste items where you need them.
+
+
+Ctrl+Enter				Insert Line After
+Ctrl+Shift+Enter		Insert Line Before
+
+Ctrl+K, Ctrl+Backspace		delete to beginning
+Ctrl+K, Ctrl+K 				delete to end
+
+Ctrl+delete 		delete word forward
+Ctrl+Backspace 		delte word backwards
+
+Ctrl+t 		transpose letters
+
+Ctrl+K, Ctrl+U 		upper case text
+Ctrl+K, Ctrl+L 		lower case text
+
+Ctrl+j 		join lines
+
+Ctrl+Shift+K 		delete a line
+
+Ctrl+Shift+D 		duplicate line
+
+F9        sort highlighted lines alphabetically
+
+Ctrl+F9 	sort case sensitive
+
+scroll-wheel-button and drag 	-  insert a column of text
+	- after making column - use arrow keys to move cursors
+	  around
+
+Selection -> Invert selection          use to delete other 
+									   text than highlighted
+
+Remove all tags from html - use find all and regular 
+							new expression
+	(?<=>)(.+?)(?=<)
+	Click Find All to select the text between the tags. Then run Invert Selection, highlighting the tags
+	for deletion.									   
+
+ctrl-d   select current word
+ctrl-l 	 select current line
+ctrl-shift-m   select everything between brackets - do again for all between outer enclosing brackets
+
+Ctrl+Shift+J   expand selection to indention level - good for langs like elixir without a lot of [] or {}
+
+Ctrl+Shift+A   expand selection to tags - good for html
+
+Ctrl+Shift+Space	expand selection to greater and greater scopes
+
+Ctrl-P    go to anything
+
+Ctrl-G    go to line
+
+Ctrl-R	  go to symbol
+
+
+Alt--  "Alt"-"minus"           jump back to previous position
+Alt-shift--						jump forward
+
+Ctrl-M   		jump to matching bracket
+
+ctrl-up arrow         scroll up
+ctrl-down arrow   	  scroll down
+
+Ctrl+Shift+[			code folding - fold it
+Ctrl+Shift+]		unfold it
+
+Ctrl+K, Ctrl+1 			fold everything
+Ctrl+K, Ctrl+J 		unfold everything
+
+
+
+Bookmarks
+---------
+
+Ctrl-F2       set a bookmark
+F2 			go to bookmark
+Ctrl+Shift+F2   remove all bookmarks from file
+
+reveal file in sidebar - right click in file and click on "reveal in sidebar"
+
+
+
+alt-shft-w     wrap html with tag
+
+
+lorem        - type and hit tab to get the lorem text
+
+tabs 		- move forwards in a snippet
+Shift-tab   - move backwards in a snippet
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,3 +1,6 @@
+git push -u origin master
+
+
 ctrl-k, ctrl-b    hide side panel
 
 drag a file from file explorer into a window to open the file

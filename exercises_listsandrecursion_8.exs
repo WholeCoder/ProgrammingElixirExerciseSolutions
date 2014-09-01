@@ -24,8 +24,59 @@ orders = [
 
 defmodule Calculate do
 	def calculate_sales_tax(tax_rates, orders) do
-		for order <- order, do: IO.puts order
+		hdict = convert_orders_to_state_dict(orders)
+		# IO.puts "hdict == #{inspect hdict}"
+		# IO.puts "hdict == #{inspect HashDict.get(hdict, :NC)}"
+
+		orders_with_new_total =
+		for state <- Dict.keys(hdict) do
+			# total_amount <- new field
+			tax_rate_for_curr_state = Keyword.get(tax_rates, state)
+			if (tax_rate_for_curr_state != nil) do
+				order_list = HashDict.get(hdict, state)
+				order_list_w_tax = for order <- order_list do
+														 net_amount = Keyword.get(order, :net_amount)
+														 net_with_tax_amount = net_amount + net_amount * tax_rate_for_curr_state
+														 Keyword.put(order, :total_amount, net_with_tax_amount)
+													 end
+			else
+				order_list = HashDict.get(hdict, state)
+				order_list_w_out_tax = for order <- order_list do
+																 net_amount = Keyword.get(order, :net_amount)
+																 total_without_tax = net_amount
+																 Keyword.put(order, :total_amount, total_without_tax)
+															 end
+			end
+
+			if (order_list_w_tax != nil) do
+				order_list_w_tax
+			else
+				order_list_w_out_tax
+			end
+		end
+		remove_extra_parenthesis(orders_with_new_total)
+	end
+
+	def remove_extra_parenthesis([head|[]]) do
+		head
+	end
+
+	def remove_extra_parenthesis([head|tail]) do
+		lst = for order <- head do
+						order
+					end
+		lst ++ remove_extra_parenthesis(tail)					
+		# IO.puts "lst == #{inspect head}"
+	end
+	
+
+	def convert_orders_to_state_dict(lst) do
+		create_state_hash_dict_fnc = fn(order=[_,ship_to, _], hdict) -> 
+			HashDict.update(hdict, Enum.at(Tuple.to_list(ship_to),1), [order], &([order|&1]))
+		end
+
+		Enum.reduce(lst, HashDict.new, create_state_hash_dict_fnc)	
 	end
 end
 
-Calculate.calculate_sales_tax(tax_rates, orders)
+IO.puts "Calculate.calculate_sales_tax(tax_rates, orders) == #{inspect Calculate.calculate_sales_tax(tax_rates, orders)}"

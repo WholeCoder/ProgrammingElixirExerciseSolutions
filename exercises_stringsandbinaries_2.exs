@@ -7,7 +7,7 @@ defmodule Anagram do
 		true
 	end
 
-	def anagram?([], word2)#[head2| _]
+	def anagram?([], word2)
 	when word2 != [] do
 		false
 	end

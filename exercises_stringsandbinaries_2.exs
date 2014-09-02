@@ -7,8 +7,8 @@ defmodule Anagram do
 		true
 	end
 
-	def anagram?([], [head2| _])
-	when head2 != nil do
+	def anagram?([], word2)#[head2| _]
+	when word2 != [] do
 		false
 	end
 
@@ -21,7 +21,7 @@ defmodule Anagram do
 	end
 end
 
-w1 = 'torchwood'
-w2 = 'doctorwho'
+w1 = 'doctorwho'
+w2 = 'torchwood'
 
 IO.puts "Anagram.anagram?('#{w1}', '#{w2}') == #{Anagram.anagram?(w1,w2)}"

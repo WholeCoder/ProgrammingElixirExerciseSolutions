@@ -53,3 +53,5 @@ num = '123 * 111'
 IO.puts "Converter.convert_from_list_to_integer('#{num}') == #{Converter.convert_from_list_to_integer(num)}"
 num = '123 / 111'
 IO.puts "Converter.convert_from_list_to_integer('#{num}') == #{Converter.convert_from_list_to_integer(num)}\n"
+num = '123 + 27'
+IO.puts "Converter.convert_from_list_to_integer('#{num}') == #{Converter.convert_from_list_to_integer(num)}\n"

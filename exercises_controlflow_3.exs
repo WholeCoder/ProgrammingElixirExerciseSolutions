@@ -13,14 +13,13 @@
 # file = ok! File.open("somefile")
 
 defmodule Test do
-	def ok!({:ok, data}) do
-		data
-	end
-
-	def ok!(other) do
-		raise "#{inspect other}"
+	def ok!(parms) do
+		case parms do
+			{:ok, data} -> data
+			other -> raise "#{inspect other}"
+		end
 	end
 end
 
-file = Test.ok! File.open("finances_september_2014.csv")
+file = Test.ok! File.open("finances_september_20sdf14.csv")
 IO.puts("file == #{inspect file}")

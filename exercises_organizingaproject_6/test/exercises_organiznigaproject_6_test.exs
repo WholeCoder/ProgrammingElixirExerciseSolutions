@@ -9,7 +9,7 @@
 # that fetches this data, parses it, and displays it in a nice format.
 # (Hint: you might not have to download a library to handle XML 
 # parsing)
-defmodule ParseWheatherData do
+defmodule ParseWeatherData do
 	@user_agent [ {"User-agent", "Elixir dave@pragprog.com"} ]
 
 	def fetch() do
@@ -33,7 +33,7 @@ defmodule ExercisesOrganiznigaproject_6Test do
   Record.defrecord :xmlText, Record.extract(:xmlText, from_lib: "xmerl/include/xmerl.hrl")
 
   test "the truth" do
-  	{:ok, xml_data} = ParseWheatherData.fetch()
+  	{:ok, xml_data} = ParseWeatherData.fetch()
   	{ xml, _rest } = :xmerl_scan.string(String.to_char_list(xml_data))#:erlang.bitstring_to_list
   	# IO.puts "parsed xml == #{inspect xml_data}"
     location = get_text_element('/current_observation/location',xml)

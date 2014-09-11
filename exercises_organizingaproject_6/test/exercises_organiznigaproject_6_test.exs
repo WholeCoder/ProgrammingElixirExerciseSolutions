@@ -36,18 +36,36 @@ defmodule ExercisesOrganiznigaproject_6Test do
   	{:ok, xml_data} = ParseWheatherData.fetch()
   	{ xml, _rest } = :xmerl_scan.string(String.to_char_list(xml_data))#:erlang.bitstring_to_list
   	# IO.puts "parsed xml == #{inspect xml_data}"
-    credit = get_text_element('/current_observation/credit',xml)
-    IO.puts "credit == #{credit}"
+    location = get_text_element('/current_observation/location',xml)
+    IO.puts "location == #{location}"
+
+    observation_time = get_text_element('/current_observation/observation_time',xml)
+    IO.puts "observation_time == #{observation_time}"
+
+    weather = get_text_element('/current_observation/weather',xml)
+    IO.puts "weather == #{weather}"
+
+    temp_f = get_text_element('/current_observation/temp_f',xml)
+    IO.puts "temp == #{temp_f} Degrees Fahrenheit"
+
+    relative_humidity = get_text_element('/current_observation/relative_humidity',xml)
+    IO.puts "relative_humidity == #{relative_humidity}"
+
+    dewpoint_string = get_text_element('/current_observation/dewpoint_string',xml)
+    IO.puts "dewpoint_string == #{dewpoint_string}"
+
+    visibility_mi = get_text_element('/current_observation/visibility_mi',xml)
+    IO.puts "visibility == #{visibility_mi} miles"
   end
 
   def get_text_element(path,xml) do
-    [credit_element] = :xmerl_xpath.string(path,xml)
+    [elem_element] = :xmerl_xpath.string(path,xml)
     # IO.puts "credit_element == #{inspect credit_element}"
 
-    [ credit_text ] = xmlElement(credit_element, :content)
+    [ elem_text ] = xmlElement(elem_element, :content)
     # IO.puts "credit_text = #{inspect(credit_text)}\n"
 
-    credit = xmlText(credit_text, :value)
+    elem = xmlText(elem_text, :value)
   end
   
 end

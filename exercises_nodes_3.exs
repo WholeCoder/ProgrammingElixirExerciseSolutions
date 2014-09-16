@@ -6,6 +6,8 @@
 # starts back at the first. The solution should deal with new clients 
 # being added at any time.
 
+import :timer, only: [ sleep: 1 ]
+
 defmodule Ticker do
 
   @interval 2000   # 2 seconds
@@ -13,7 +15,7 @@ defmodule Ticker do
   @name  :ticker
 
   def start do
-    pid = spawn(__MODULE__, :generator, [[]])
+    pid = spawn(__MODULE__, :start_distributing, [[]]) # was generator
     :global.register_name(@name, pid)
   end
 
@@ -21,19 +23,34 @@ defmodule Ticker do
     send :global.whereis_name(@name), { :register, client_pid }
   end
 
-  def generator(clients) do
+  def start_distributing(clients) do
+  	distributing_generator(clients, clients)
+  end
+  
+  def distributing_generator([], []) do
+		receive do
+      { :register, pid } ->
+        IO.puts "registering #{inspect pid}"
+        distributing_generator([pid], [pid])
+    end
+  end
+  
+  def distributing_generator([], clients) do
+  	distributing_generator(clients, clients)
+  end
+
+  def distributing_generator([cur_client| rest_of_clients], 
+  																				clients_main_list) do
     receive do
       { :register, pid } ->
         IO.puts "registering #{inspect pid}"
-        generator([pid|clients])
+        distributing_generator(rest_of_clients, [pid|clients_main_list])
 
     after
       @interval ->
-        IO.puts "tick"
-        Enum.each clients, fn client ->
-          send client, { :tick }
-        end
-        generator(clients)
+        IO.puts "tick in distribution"
+        send cur_client, { :tick }
+        distributing_generator(rest_of_clients, clients_main_list)
     end
   end
 end

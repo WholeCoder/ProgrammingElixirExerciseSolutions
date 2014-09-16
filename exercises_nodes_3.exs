@@ -6,8 +6,6 @@
 # starts back at the first. The solution should deal with new clients 
 # being added at any time.
 
-import :timer, only: [ sleep: 1 ]
-
 defmodule Ticker do
 
   @interval 2000   # 2 seconds

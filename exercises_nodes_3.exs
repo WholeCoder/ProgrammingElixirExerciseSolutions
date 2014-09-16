@@ -13,7 +13,7 @@ defmodule Ticker do
   @name  :ticker
 
   def start do
-    pid = spawn(__MODULE__, :start_distributing, [[]]) # was generator
+    pid = spawn(__MODULE__, :start_distributing, [[]])
     :global.register_name(@name, pid)
   end
 
@@ -41,7 +41,7 @@ defmodule Ticker do
   	receive do
       { :register, pid } ->
         IO.puts "registering #{inspect pid}"
-        distributing_generator(rest_of_clients, [pid|clients_main_list])
+        distributing_generator(rest_of_clients, Enum.reverse([pid|Enum.reverse(clients_main_list)]))
 
     after
       @interval ->

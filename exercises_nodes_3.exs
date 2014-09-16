@@ -39,9 +39,8 @@ defmodule Ticker do
   	distributing_generator(clients, clients)
   end
 
-  def distributing_generator([cur_client| rest_of_clients], 
-  																				clients_main_list) do
-    receive do
+  def distributing_generator([cur_client| rest_of_clients], clients_main_list) do 
+  	receive do
       { :register, pid } ->
         IO.puts "registering #{inspect pid}"
         distributing_generator(rest_of_clients, [pid|clients_main_list])

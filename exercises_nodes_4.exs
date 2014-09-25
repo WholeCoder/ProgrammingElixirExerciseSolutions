@@ -36,6 +36,10 @@ defmodule Ticker do
   end
   
 
+  def start_chain do
+    send :global.whereis_name(@name), { :start_chain}
+  end
+
   def register(client_pid) do
     send :global.whereis_name(@name), { :register, client_pid }
   end
@@ -58,7 +62,7 @@ defmodule Client do
 	def start_rec do
 		receive do
 			{:tick, [next_pid | rest], client_list} ->
-				IO.puts "tick"
+				IO.puts "tick #{inspect self}"
 				sleep @interval
 		    send next_pid, { :tick, rest, client_list}
 		    start_rec
@@ -67,7 +71,7 @@ defmodule Client do
 		  # 	[first | rest] = client_list
 				# sleep @interval
 		  # 	send first, {:tick, rest, client_list}
-				IO.puts "tick"
+				IO.puts "tick #{inspect self}"
 				sleep @interval
     		send :global.whereis_name(:ticker), { :start_chain }
 		  	start_rec

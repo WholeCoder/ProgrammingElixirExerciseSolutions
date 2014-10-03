@@ -1,0 +1,26 @@
+# Exercise: OTP-Supervisors-2
+
+# Rework your stack server to use a supervision tree with 
+# a separate stash process to hold the state. Verify it 
+# works, and that when you crash the server the state is 
+# retained across a restart. Chapter 17. OTP: Supervisors 
+
+defmodule ExerciseOtpsupervisor2 do
+  use Application
+
+  # See http://elixir-lang.org/docs/stable/elixir/Application.html
+  # for more information on OTP Applications
+  def start(_type, _args) do
+    import Supervisor.Spec, warn: false
+
+    children = [
+      # Define workers and child supervisors to be supervised
+      # worker(ExerciseOtpsupervisor2.Worker, [arg1, arg2, arg3])
+    ]
+
+    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
+    # for other strategies and supported options
+    opts = [strategy: :one_for_one, name: ExerciseOtpsupervisor2.Supervisor]
+    Supervisor.start_link(children, opts)
+  end
+end

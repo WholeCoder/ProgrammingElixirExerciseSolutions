@@ -1,7 +1,7 @@
 defmodule FinancialSummary do
 
 	@second_column_width 20
-	@total_available_dollars_per_month 1280
+	@total_available_dollars_per_month 1192
 
 	def second_column_width, do: @second_column_width
 	def total_available_dollars_per_month, do: @total_available_dollars_per_month
@@ -23,7 +23,7 @@ defmodule FinancialSummary do
 	end
 end
 
-map = File.open!("finances_september_2014.csv")
+map = File.open!("finances_october_2014.csv")
 	|> IO.stream(:line)
 	|> Enum.map(&String.strip/1)
 	|> Enum.map(&(String.split(&1,",")))

@@ -2,6 +2,7 @@ defmodule Stack.Supervisor do
   use Supervisor
 
   def start_link(initial_stack) do
+    IO.puts "initial_stack == #{inspect initial_stack}"
     result = {:ok, sup } = Supervisor.start_link(__MODULE__, [initial_stack]) 
     start_workers(sup, initial_stack)
     result

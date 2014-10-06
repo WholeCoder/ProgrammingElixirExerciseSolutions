@@ -13,7 +13,8 @@ defmodule ExerciseOtpsupervisor2.Mixfile do
   # Type `mix help compile.app` for more information
   def application do
     [applications: [:logger],
-     mod: {Stack, []}]
+     mod: {Stack, [99, "Ruben", 9]},
+     registered: [ :stack ]]
   end
 
   # Dependencies can be Hex packages:

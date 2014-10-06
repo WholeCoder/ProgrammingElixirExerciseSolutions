@@ -1,8 +1,8 @@
 defmodule Stack do
   use Application
 
-  def start(_type, _args) do
+  def start(_type, initial_stack) do
     IO.puts "Starting supervisor-------------"
-    Stack.Supervisor.start_link([99, "Ruben", 9])
+    Stack.Supervisor.start_link(initial_stack)
   end
 end
